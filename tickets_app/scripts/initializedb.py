@@ -13,6 +13,7 @@ from pyramid.scripts.common import parse_vars
 
 from ..models.meta import DBSession, Base
 from ..models import Game, Price, Purchase
+from ..seed import load_games
 
 
 def usage(argv):
@@ -33,6 +34,4 @@ def main(argv=sys.argv):
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
     # with transaction.manager:
-    #     import datetime
-    #     model = Game(date=datetime.datetime.now(), opponent='Padres')
-    #     DBSession.add(model)
+        # load_games(DBSession)
