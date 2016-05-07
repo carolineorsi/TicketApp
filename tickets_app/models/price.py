@@ -6,16 +6,19 @@ from sqlalchemy import (
     ForeignKey,
     Integer,
     Float,
-    DateTime,
+    Date,
+    DateTime
     )
 
 class Price(Base):
     __tablename__ = 'prices'
-    id = Column(Integer, primary_key=True)
-    game_id = Column(Integer, ForeignKey('games.id'))
-    datetime = Column(DateTime, nullable=False)
+    price_id = Column(Integer, primary_key=True)
+    ticket_id = Column(Integer, ForeignKey('tickets.ticket_id'))
+    game_date = Column(Date, ForeignKey('games.game_date'))
+    price_date = Column(DateTime)
     price = Column(Float)
     source = Column(Integer)
     num_tix = Column(Integer)
 
-    game = relationship("Game", backref=backref("prices", order_by=id))
+    game = relationship("Game", backref=backref("prices", order_by=game_date))
+    ticket = relationship("Ticket", backref=backref("prices", order_by=ticket_id))

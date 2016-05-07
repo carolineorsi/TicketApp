@@ -4,16 +4,31 @@ from pyramid.view import view_config
 from sqlalchemy.exc import DBAPIError
 
 from ..models.meta import DBSession
-from ..models import Game, Price, Purchase
+from ..models import Game, Price, Purchase, Ticket
 
 
 @view_config(route_name='home', renderer='templates/dashboard.jinja2')
 def my_view(request):
     try:
-        games = DBSession.query(Game).all()
+        # games = DBSession.query(Game).all()
+        tickets = DBSession.query(Ticket).order_by(Ticket.game_date)
     except DBAPIError:
         return Response(conn_err_msg, content_type='text/plain', status_int=500)
-    return {'games': games}
+    return {'tickets': tickets}
+
+
+@view_config(route_name='add_purchase', renderer='templates/purchase.jinja2')
+def add_purchase(request):
+
+    import ipdb
+    ipdb.set_trace()
+    try:
+        games = DBSession.query(Game).all()
+        tickets = DBSession.query(Ticket).order_by(Ticket.game_date)
+    except DBAPIError:
+        return Response(conn_err_msg, content_type='text/plain', status_int=500)
+    return {'games': games,
+            'tickets': tickets}
 
 
 conn_err_msg = """\

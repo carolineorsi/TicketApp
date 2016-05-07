@@ -1,3 +1,20 @@
-{% for game in games %}
-	<div>{{game.date}}, {{game.time}}, {{game.opponent}}, {{game.promotion}}, {{game.price}}</div>
+<table>
+	<tr>
+		<th>Date</th>
+		<th>Time</th>
+		<th>Opponent</th>
+		<th>Promotion</th>
+		<th>Original Price</th>
+		<th>Location</th>
+	<tr>
+{% for ticket in tickets %}
+	<tr>
+		<td>{{ ticket.game_date }}</td>
+		<td>{{ ticket.game.time }}</td>
+		<td>{{ ticket.game.opponent }}</td>
+		<td>{{ ticket.game.promotion }}</td>
+		<td>${{ ticket.price }}</td>
+		<td>{{ ticket.section }}, Row {{ ticket.row }}, Seat {{ ticket.seat }}</td>
+    </tr>
 {% endfor %}
+</table>

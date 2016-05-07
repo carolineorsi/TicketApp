@@ -12,8 +12,8 @@ from pyramid.paster import (
 from pyramid.scripts.common import parse_vars
 
 from ..models.meta import DBSession, Base
-from ..models import Game, Price, Purchase
-from ..seed import load_games
+from ..models import Game, Price, Purchase, Ticket
+from ..seed import load_games, load_tickets
 
 
 def usage(argv):
@@ -33,5 +33,6 @@ def main(argv=sys.argv):
     engine = engine_from_config(settings, 'sqlalchemy.')
     DBSession.configure(bind=engine)
     Base.metadata.create_all(engine)
-    # with transaction.manager:
-        # load_games(DBSession)
+    with transaction.manager:
+        load_games(DBSession)
+        load_tickets(DBSession)

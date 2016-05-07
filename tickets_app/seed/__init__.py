@@ -1,1 +1,1 @@
-from .seed import load_games
+from .seed import load_games, load_tickets
