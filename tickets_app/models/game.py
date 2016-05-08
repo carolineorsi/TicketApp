@@ -11,8 +11,8 @@ from sqlalchemy import (
 
 class Game(Base):
     __tablename__ = 'games'
-    # game_id = Column(Integer, primary_key=True)
-    game_date = Column(Date, primary_key=True)
+    game_id = Column(Integer, primary_key=True)
+    game_date = Column(Date, nullable=False)
     time = Column(Time)
     opponent = Column(String(50), nullable=False)
     promotion = Column(String(50))

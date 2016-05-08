@@ -29,11 +29,11 @@ def load_tickets(session):
 
 	for row in data:
 		ticket = Ticket()
-		ticket.game_date = datetime.strptime(row[0], "%m/%d/%y")
-		ticket.section = row[1]
-		ticket.row = row[2]
-		ticket.seat = row[3]
-		ticket.price = float(row[4])
+		ticket.game_id = row[0]
+		ticket.section = row[2]
+		ticket.row = row[3]
+		ticket.seat = row[4]
+		ticket.price = float(row[5])
 		ticket.is_purchased = 0
 		ticket.hold_for_us = 0
 

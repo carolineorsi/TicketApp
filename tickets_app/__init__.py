@@ -19,6 +19,7 @@ def main(global_config, **settings):
 
     config.add_route('home', '/')
     config.add_route('games', '/games')
+    config.add_route('tickets', '/tickets')
     config.add_route('add_purchase', '/purchase')
 
     config.scan()

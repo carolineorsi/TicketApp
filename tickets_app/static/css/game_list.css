@@ -1,8 +1,16 @@
 .game-list {
-	border: 1px solid grey;
+	border: none;
 }
 .game-list-row td,
 .game-list-header-row th {
-	border: 1px solid grey;
-	padding: 5px;
+	border-bottom: 1px solid grey;
+	padding: 10px 20px;
+    text-align: left;
+}
+.game-expand {
+	color: #3399ff;
+	text-decoration: none;
+	font-size: 24px;
+	font-weight: bold;
+    cursor: pointer;
 }

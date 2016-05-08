@@ -8,6 +8,7 @@ var GameList = React.createClass({
             <table className="game-list">
                 <tbody>
                     <tr className="game-list-header-row">
+                        <th></th>
                         <th>Date</th>
                         <th>Time</th>
                         <th>Opponent</th>
@@ -21,10 +22,20 @@ var GameList = React.createClass({
 });
 
 var Game = React.createClass({
+    getTickets: function() {
+        $.ajax({
+            url: "/tickets",
+            data: {"game_id": this.props.game.game_id},
+            success: function(result) {
+                var tickets = result;
+            }
+        })
+    },
     render: function() {
         var game = this.props.game;
         return (
             <tr className="game-list-row">
+                <td><span className="game-expand" onClick={this.getTickets}>+</span></td>
                 <td>{game.game_date}</td>
                 <td>{game.time}</td>
                 <td>{game.opponent}</td>

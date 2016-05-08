@@ -11,7 +11,7 @@ from ..models import Game, Price, Purchase, Ticket
 def my_view(request):
     try:
         # games = DBSession.query(Game).all()
-        tickets = DBSession.query(Ticket).order_by(Ticket.game_date)
+        tickets = DBSession.query(Ticket).order_by(Ticket.game_id)
     except DBAPIError:
         return Response(conn_err_msg, content_type='text/plain', status_int=500)
     return {'tickets': tickets}
@@ -27,6 +27,7 @@ def get_games(request):
     game_list = []
     for game in games:
         game_data = {}
+        game_data['game_id'] = game.game_id
         game_data['game_date'] = game.game_date.strftime('%b %d')
         game_data['time'] = game.time.strftime('%l:%M %p')
         game_data['opponent'] = game.opponent
@@ -35,6 +36,31 @@ def get_games(request):
         game_list.append(game_data)
     
     return game_list
+
+
+@view_config(route_name='tickets', renderer='json')
+def get_tickets(request):
+    game_id = request.GET.get('game_id')
+    try:
+        tickets = DBSession.query(Ticket).filter(Ticket.game_id == game_id)
+    except DBAPIError:
+        return Response(conn_err_msg, content_type='text/plain', status_int=500)
+
+    ticket_list = []
+    for ticket in tickets:
+        ticket_data = {}
+        ticket_data['ticket_id'] = ticket.ticket_id
+        ticket_data['game_id'] = ticket.game_id
+        ticket_data['section'] = ticket.section
+        ticket_data['row'] = ticket.row
+        ticket_data['seat'] = ticket.seat
+        ticket_data['price'] = ticket.price
+        ticket_data['is_purchased'] = ticket.is_purchased
+        ticket_data['hold_for_us'] = ticket.hold_for_us
+
+        ticket_list.append(ticket_data)
+    
+    return ticket_list
 
 
 @view_config(route_name='add_purchase', renderer='templates/purchase.jinja2')

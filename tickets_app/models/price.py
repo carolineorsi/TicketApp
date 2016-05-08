@@ -14,11 +14,11 @@ class Price(Base):
     __tablename__ = 'prices'
     price_id = Column(Integer, primary_key=True)
     ticket_id = Column(Integer, ForeignKey('tickets.ticket_id'))
-    game_date = Column(Date, ForeignKey('games.game_date'))
+    game_id = Column(Integer, ForeignKey('games.game_id'))
     price_date = Column(DateTime)
     price = Column(Float)
     source = Column(Integer)
     num_tix = Column(Integer)
 
-    game = relationship("Game", backref=backref("prices", order_by=game_date))
+    game = relationship("Game", backref=backref("prices", order_by=game_id))
     ticket = relationship("Ticket", backref=backref("prices", order_by=ticket_id))

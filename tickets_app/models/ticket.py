@@ -14,7 +14,7 @@ from sqlalchemy import (
 class Ticket(Base):
     __tablename__ = 'tickets'
     ticket_id = Column(Integer, primary_key=True)
-    game_date = Column(Date, ForeignKey('games.game_date'))
+    game_id = Column(Integer, ForeignKey('games.game_id'))
     section = Column(String(20), nullable=False)
     row = Column(String(5), nullable=False)
     seat = Column(Integer, nullable=False)
@@ -22,5 +22,4 @@ class Ticket(Base):
     is_purchased = Column(Integer)
     hold_for_us = Column(Integer)
 
-    game = relationship("Game", backref=backref("tickets", order_by=game_date))
-    # need backref?
+    game = relationship("Game", backref=backref("tickets", order_by=game_id))
