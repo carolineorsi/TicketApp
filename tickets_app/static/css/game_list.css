@@ -1,0 +1,8 @@
+.game-list {
+	border: 1px solid grey;
+}
+.game-list-row td,
+.game-list-header-row th {
+	border: 1px solid grey;
+	padding: 5px;
+}

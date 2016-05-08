@@ -5,9 +5,17 @@ var GameList = React.createClass({
         });
 
         return (
-            <ul>
-                {games}
-            </ul>
+            <table className="game-list">
+                <tbody>
+                    <tr className="game-list-header-row">
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Opponent</th>
+                        <th>Promotion</th>
+                    </tr>
+                    {games}
+                </tbody>
+            </table>
         );
     }
 });
@@ -16,9 +24,12 @@ var Game = React.createClass({
     render: function() {
         var game = this.props.game;
         return (
-            <li>
-                {game.game_date}, {game.time}, {game.opponent}, {game.promotion}
-            </li>
+            <tr className="game-list-row">
+                <td>{game.game_date}</td>
+                <td>{game.time}</td>
+                <td>{game.opponent}</td>
+                <td>{game.promotion}</td>
+            </tr>
         );
     }
 });

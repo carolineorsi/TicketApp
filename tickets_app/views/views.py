@@ -28,7 +28,7 @@ def get_games(request):
     for game in games:
         game_data = {}
         game_data['game_date'] = game.game_date.strftime('%b %d')
-        game_data['time'] = game.time.strftime('%I:%M')
+        game_data['time'] = game.time.strftime('%l:%M %p')
         game_data['opponent'] = game.opponent
         game_data['promotion'] = game.promotion
 
