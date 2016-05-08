@@ -17,6 +17,26 @@ def my_view(request):
     return {'tickets': tickets}
 
 
+@view_config(route_name='games', renderer='json')
+def get_games(request):
+    try:
+        games = DBSession.query(Game).all()
+    except DBAPIError:
+        return Response(conn_err_msg, content_type='text/plain', status_int=500)
+
+    game_list = []
+    for game in games:
+        game_data = {}
+        game_data['game_date'] = game.game_date.strftime('%b %d')
+        game_data['time'] = game.time.strftime('%I:%M')
+        game_data['opponent'] = game.opponent
+        game_data['promotion'] = game.promotion
+
+        game_list.append(game_data)
+    
+    return game_list
+
+
 @view_config(route_name='add_purchase', renderer='templates/purchase.jinja2')
 def add_purchase(request):
 

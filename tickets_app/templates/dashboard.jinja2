@@ -1,20 +1,49 @@
-<table>
-	<tr>
-		<th>Date</th>
-		<th>Time</th>
-		<th>Opponent</th>
-		<th>Promotion</th>
-		<th>Original Price</th>
-		<th>Location</th>
-	<tr>
-{% for ticket in tickets %}
-	<tr>
-		<td>{{ ticket.game_date }}</td>
-		<td>{{ ticket.game.time }}</td>
-		<td>{{ ticket.game.opponent }}</td>
-		<td>{{ ticket.game.promotion }}</td>
-		<td>${{ ticket.price }}</td>
-		<td>{{ ticket.section }}, Row {{ ticket.row }}, Seat {{ ticket.seat }}</td>
-    </tr>
-{% endfor %}
-</table>
+<!DOCTYPE html>
+<html>
+  <head lang="en">
+    <meta charset="UTF-8">
+    <title>Tickets</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- styles -->
+  </head>
+  <body>
+    <div class="container">
+      <h1>Tickets</h1>
+      <br>
+      <div id="content"></div>
+    </div>
+    <!-- scripts -->
+
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script src="https://fb.me/react-15.0.2.js"></script>
+		<script src="https://fb.me/react-dom-15.0.2.js"></script>
+		<script src="http://cdnjs.cloudflare.com/ajax/libs/react/0.12.0/JSXTransformer.js"></script>
+		<script type="text/jsx" src="./static/javascript/components/GameList.js"></script>
+		<script type="text/jsx" src="./static/javascript/index.js"></script>
+<!-- 
+		<table>
+			<tr>
+				<th>Date</th>
+				<th>Time</th>
+				<th>Opponent</th>
+				<th>Promotion</th>
+				<th>Original Price</th>
+				<th>Location</th>
+			<tr>
+		{% for ticket in tickets %}
+			<tr>
+				<td>{{ ticket.game_date }}</td>
+				<td>{{ ticket.game.time }}</td>
+				<td>{{ ticket.game.opponent }}</td>
+				<td>{{ ticket.game.promotion }}</td>
+				<td>${{ ticket.price }}</td>
+				<td>{{ ticket.section }}, Row {{ ticket.row }}, Seat {{ ticket.seat }}</td>
+		    </tr>
+		{% endfor %}
+		</table> -->
+
+	<div id="app">
+	</div>
+
+  </body>
+</html>
