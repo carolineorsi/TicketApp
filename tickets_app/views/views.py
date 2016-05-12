@@ -33,7 +33,37 @@ def get_games(request):
         game_data['opponent'] = game.opponent
         game_data['promotion'] = game.promotion
 
+        game_data['tickets'] = []
+
         game_list.append(game_data)
+
+    fake_ticket1 = {
+        'ticket_id': 1,
+        'status': 'Available',
+        'section': 'VR317',
+        'row': 4,
+        'seat': 21,
+        'price': 10,
+        'purchase_date': None,
+        'buyer': None,
+        'purchase_price': None,
+        'payment': None
+    }
+
+    fake_ticket2 = {
+        'ticket_id': 2,
+        'status': 'Sold',
+        'section': 'VR317',
+        'row': 4,
+        'seat': 22,
+        'price': 10,
+        'purchase_date': '5/11/16',
+        'buyer': 'Bob',
+        'purchase_price': 15,
+        'payment': 'Cash'
+    }
+
+    game_list[0]['tickets'] = [fake_ticket1, fake_ticket2]
     
     return game_list
 

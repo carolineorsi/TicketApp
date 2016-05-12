@@ -1,10 +1,18 @@
-.game-list {
-	border: none;
+body {
+    font-family: verdana;
 }
-.game-list-row td,
-.game-list-header-row th {
-	border-bottom: 1px solid grey;
-	padding: 10px 20px;
+
+.game-table-row {
+    background-color: lightblue;
+    border: 1px solid grey;
+    margin: 2px;
+}
+.game-detail {
+	border: none;
+    width: 100%;
+}
+.game-table-row td {
+	padding: 5px 20px;
     text-align: left;
 }
 .game-expand {
@@ -13,4 +21,27 @@
 	font-size: 24px;
 	font-weight: bold;
     cursor: pointer;
+}
+.game-detail-expand {
+    width: 10%;
+}
+.game-detail-date,
+.game-detail-time {
+    width: 15%;
+}
+.game-detail-opponent,
+.game-detail-promotion {
+    width: 30%;
+}
+
+.ticket-table {
+    width: 90%;
+    margin: 0 5%;
+    font-size: 12px;
+}
+.ticket-table tr {
+    text-align: left;
+}
+.ticket-table th {
+    border-bottom: 1px solid grey;
 }
